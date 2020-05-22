@@ -99,7 +99,7 @@ namespace {
         blocked    = theirPawns & (s + Up);
         stoppers   = theirPawns & passed_pawn_span(Us, s);
         lever      = theirPawns & PawnAttacks[Us][s];
-        leverPush  = theirPawns & PawnAttacks[Us][s + Up];
+        leverPush  = (theirPawns & PawnAttacks[Us][s + Up]) | ((theirPawns & relative_rank(Them, RANK_2)) & PawnAttacks[Us][s + 2 * Up]);
         doubled    = ourPawns   & (s - Up);
         neighbours = ourPawns   & adjacent_files_bb(s);
         phalanx    = neighbours & rank_bb(s);
